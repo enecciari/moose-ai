@@ -1,0 +1,17 @@
+#!/usr/bin/make -f
+
+export CARGO_HOME = $(CURDIR)/debian/.cargo
+export CARGO_NET_OFFLINE = true
+
+%:
+	dh $@ --buildsystem=meson
+
+override_dh_auto_configure:
+	cp -r .cargo debian/
+	if [ -d "debian/vendor" ]; then \
+		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/"[^"]*\.orig"[^,]*,\?//g' {} \; ; \
+		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/,\?"[^"]*\.orig"[^:]*:[^,]*//g' {} \; ; \
+		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/{,/{/g; s/,}/}/g' {} \; ; \
+	fi
+	dh_auto_configure -- -Dgui=true --wrap-mode=nodownload
+

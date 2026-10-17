@@ -1,0 +1,23 @@
+Source: moose-ai
+Section: utils
+Priority: optional
+Maintainer: Il Tuo Nome <tuo.email@esempio.com>
+Build-Depends: debhelper-compat (= 13),
+               meson,
+               ninja-build,
+               cargo,
+               rustc,
+               libgtk-4-dev,
+               libadwaita-1-dev,
+	       libgtksourceview-5-dev,
+	       libsqlite3-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/moooossee/moose
+
+Package: moose-ai
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ollama, libgtksourceview-5-0, libsqlite3-0
+Description: Chat locale con modelli AI tramite Ollama
+ Interfaccia grafica moderna in GTK4 e Rust per interagire 
+ con modelli AI offline ed eseguire Ollama localmente.
+

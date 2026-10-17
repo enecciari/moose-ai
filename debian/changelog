@@ -1,0 +1,5 @@
+moose-ai (0.6.1-1) unstable; urgency=medium
+
+  * Initial release of Moose AI package for Debian.
+
+ -- Emiliano Necciari <e.necciari@gmail.com>  Sat, 17 Oct 2026 09:30:00 +0200
