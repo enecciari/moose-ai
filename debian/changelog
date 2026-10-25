@@ -1,3 +1,7 @@
+moose-ai (0.7.0-1) unstable; urgency=medium
+
+  * New upstream release.
+
 moose-ai (0.6.1-1) unstable; urgency=medium
 
   * Initial release of Moose AI package for Debian.

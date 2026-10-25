@@ -8,10 +8,15 @@ export CARGO_NET_OFFLINE = true
 
 override_dh_auto_configure:
 	cp -r .cargo debian/
-	if [ -d "debian/vendor" ]; then \
-		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/"[^"]*\.orig"[^,]*,\?//g' {} \; ; \
-		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/,\?"[^"]*\.orig"[^:]*:[^,]*//g' {} \; ; \
-		find debian/vendor -name .cargo-checksum.json -exec sed -i 's/{,/{/g; s/,}/}/g' {} \; ; \
+	if [ -d "debian/.cargo/vendor" ]; then \
+		find debian/.cargo/vendor -name .cargo-checksum.json -exec sed -i 's/"[^"]*\.orig"[^,]*,\?//g' {} \; ; \
+		find debian/.cargo/vendor -name .cargo-checksum.json -exec sed -i 's/,\?"[^"]*\.orig"[^:]*:[^,]*//g' {} \; ; \
+		find debian/.cargo/vendor -name .cargo-checksum.json -exec sed -i 's/{,/{/g; s/,}/}/g' {} \; ; \
+	fi
+	if [ -d "vendor" ]; then \
+		find vendor -name .cargo-checksum.json -exec sed -i 's/"[^"]*\.orig"[^,]*,\?//g' {} \; ; \
+		find vendor -name .cargo-checksum.json -exec sed -i 's/,\?"[^"]*\.orig"[^:]*:[^,]*//g' {} \; ; \
+		find vendor -name .cargo-checksum.json -exec sed -i 's/{,/{/g; s/,}/}/g' {} \; ; \
 	fi
 	dh_auto_configure -- -Dgui=true --wrap-mode=nodownload
 
